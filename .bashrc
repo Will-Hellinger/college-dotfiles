@@ -65,11 +65,11 @@ get_tools() {
 
     echo "done setting up btop"
   fi
+
+  export PATH="$tools_dir:$PATH"
  }
 
 get_tools
-export PATH="$HOME/tools:$PATH"
-
 update_dotfiles
 
 clear
