@@ -80,25 +80,23 @@ get_tools() {
 userlist() {
   local option=${1:-all}
   local online_users=$(who | cut -d' ' -f1 | sort | uniq)
-  local all_users=$(awk -F':' '{ if ($3 >= 1000) print $1 }' /etc/passwd)
+  local all_users=$(awk -F':' '{print $1}' /etc/passwd)
 
   case "$option" in
     online)
       echo -e "Online Users:"
       for user in $online_users; do
-        if [[ $all_users =~ $user ]]; then
-          echo -e "\e[32m$user\e[0m"
-        fi
+        echo -e "\e[32m$user\e[0m"
       done
       ;;
     offline)
       echo -e "Offline Users:"
-      for user in $all_users; do
-        if ! [[ $online_users =~ $user ]]; then
-          echo -e "\e[31m$user\e[0m"
-        fi
-      done
-      ;;
+        for user in $all_users; do
+          if ! [[ $online_users =~ $user ]]; then
+            echo -e "\e[31m$user\e[0m"
+          fi
+        done
+        ;;
     *)
       echo -e "All Users:"
       for user in $all_users; do
@@ -112,7 +110,6 @@ userlist() {
   esac
 }
 
-
 user_count=$(wc -l /etc/passwd | cut -d' ' -f1)
 online_user_count=$(who | cut -d' ' -f1 | sort | uniq | wc -l)
 
@@ -122,4 +119,4 @@ clear
 fastfetch
 
 echo -e "Welcome to RIT Servers!"
-echo -e "There are $online_user_count/$user_count users\e[32m online\e[0m!"
+echo -e "There are $online_user_count users\e[32m online\e[0m!"
