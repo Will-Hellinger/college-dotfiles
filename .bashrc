@@ -118,12 +118,17 @@ getinfo() {
 
   local username="$1"
 
-  echo "Information for user: $username"
-  
-  echo "Uptime: $(last -F -n 1 "$username" | head -n 1 | awk '{print $6, $7, $8, $9, $10}')"
+  # Getting user uptime
+  local uptime=$(last -F -n 1 "$username" | head -n 1 | awk '{print $6, $7, $8, $9, $10}')
+  uptime=${uptime:-"No recent sessions"}
 
-  echo "Processes running:"
-  ps -u "$username" -o pid,cmd
+  # Header
+  echo -e "Information for user: \e[33m$username\e[0m"
+  echo -e "Uptime: \e[32m$uptime\e[0m"
+
+  # Processes
+  echo -e "Processes running:"
+  ps -u "$username" -o pid=,cmd= | awk '{printf "  %-8s %s\n", $1, $0}' | cut -d' ' -f1,3-
 }
 
 user_count=$(wc -l /etc/passwd | cut -d' ' -f1)
