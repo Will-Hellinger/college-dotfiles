@@ -165,9 +165,19 @@ backup() {
   cp "$1" "$1.bak"
 }
 
-server_info(){
-  echo -e "Welcome to RIT Servers!"
+server_info() {
+  local online_user_count=$(who | cut -d' ' -f1 | sort | uniq | wc -l)
+
+  echo -e "Welcome to RIT Servers! Current time is: $(date)"
   echo -e "There are $online_user_count users\e[32m online\e[0m!"
+}
+
+checkport() {
+  nc -zv "$1" "$2" && echo "Port $2 on $1 is open" || echo "Port $2 on $1 is closed"
+}
+
+netinfo() {
+  ip addr show
 }
 
 clean_clear() {
@@ -175,9 +185,6 @@ clean_clear() {
   fastfetch
   server_info
 }
-
-user_count=$(wc -l /etc/passwd | cut -d' ' -f1)
-online_user_count=$(who | cut -d' ' -f1 | sort | uniq | wc -l)
 
 get_tools
 update_dotfiles
