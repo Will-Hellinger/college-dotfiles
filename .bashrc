@@ -187,6 +187,13 @@ clean_clear() {
   server_info
 }
 
+leave() {
+  while [ "$SHLVL" -gt 1 ]; do
+    exit
+  done
+  exit
+}
+
 get_tools
 update_dotfiles
 clean_clear
