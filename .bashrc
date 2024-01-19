@@ -1,4 +1,4 @@
-source /usr/local/lib/config/Bash_profile
+source /usr/local/lib/config/Bash_Profile
 
 update_dotfiles() {
   local repo_dir="$HOME/dotfiles"
