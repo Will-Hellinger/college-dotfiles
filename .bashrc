@@ -77,9 +77,14 @@ get_tools() {
   export PATH="$tools_dir:$PATH"
  }
 
+user_count=(wc -l /etc/passwd | cut -d' ' -f1)
+online_user_count=(who | cut -d' ' -f1 | sort | uniq | wc -l)
+
 get_tools
 update_dotfiles
 
 clear
 fastfetch
-echo "Welcome to RIT Servers! There are " + who | cut -d' ' -f1 | sort | uniq | wc -l + " users online!"
+echo -e "Welcome to RIT Servers!"
+echo -e "There are $online_user_count users \e[32m online\e[0m !"
+echo -e "There are ($user_count - $online_user_count) \e[31m offline\e[0m !"
