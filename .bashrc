@@ -87,4 +87,4 @@ fastfetch
 
 echo -e "Welcome to RIT Servers!"
 echo -e "There are $online_user_count users\e[32m online\e[0m!"
-echo -e "There are $(($user_count - $online_user_count)) users\e[31moffline\e[0m!"
+echo -e "There are $(($user_count - $online_user_count)) users\e[31m offline\e[0m!"
