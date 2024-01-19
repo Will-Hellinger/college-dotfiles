@@ -82,4 +82,4 @@ update_dotfiles
 
 clear
 fastfetch
-echo "Welcome to RIT Servers!"
+echo "Welcome to RIT Servers! There are " + who | cut -d' ' -f1 | sort | uniq | wc -l + " users online!"
