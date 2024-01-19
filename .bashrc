@@ -168,7 +168,8 @@ backup() {
 server_info() {
   local online_user_count=$(who | cut -d' ' -f1 | sort | uniq | wc -l)
 
-  echo -e "Welcome to RIT Servers! Current time is: $(date)"
+  echo -e "Welcome to RIT Servers!"
+  echo -e "Current time is: $(date)"
   echo -e "There are $online_user_count users\e[32m online\e[0m!"
 }
 
