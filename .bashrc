@@ -69,6 +69,7 @@ get_tools() {
 
 get_tools
 update_dotfiles
+clear
 fastfetch
 
 export PATH="$HOME/tools:$PATH"
