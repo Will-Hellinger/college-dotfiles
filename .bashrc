@@ -34,42 +34,43 @@ update_dotfiles() {
 }
 
 get_tools() {
-	local fastfetch_url="https://github.com/fastfetch-cli/fastfetch/releases/download/2.6.0/fastfetch-2.6.0-Linux.zip"
-	local btop_url="https://github.com/aristocratos/btop/releases/download/v1.3.0/btop-x86_64-linux-musl.tbz"
-	local tools_dir="$HOME/tools"
+  local fastfetch_url="https://github.com/fastfetch-cli/fastfetch/releases/download/2.6.0/fastfetch-2.6.0-Linux.zip"
+  local btop_url="https://github.com/aristocratos/btop/releases/download/v1.3.0/btop-x86_64-linux-musl.tbz"
+  local tools_dir="$HOME/tools"
 
- 	mkdir -p "$tools_dir"
+  mkdir -p "$tools_dir"
 
- 	if [ ! -f "$tools_dir/fastfetch" ]; then
-		echo "Downloading fastfetch..."
+  if [ ! -f "$tools_dir/fastfetch" ]; then
+    echo "Downloading fastfetch..."
 	
-		wget -O fastfetch.zip "$fastfetch_url" || curl -L "$fastfetch_url" -o fastfetch.zip
-    unzip fastfetch.zip "fastfetch"
+    wget -O fastfetch.zip "$fastfetch_url" || curl -L "$fastfetch_url" -o fastfetch.zip
+    unzip fastfetch.zip
     rm fastfetch.zip
 
-		mv "./fastfetch/usr/bin/fastfetch" "$tools_dir/fastfetch"
-		rm -rf "fastfetch"
+    mv "./fastfetch-2.6.0-Linux/usr/bin/fastfetch" "$tools_dir/fastfetch"
+    rm -rf "fastfetch"
 
-		echo "Done setting up fastfetch"
-	fi
+    echo "Done setting up fastfetch"
+  fi
 
- 	if [ ! -f "$tools_dir/btop" ]; then
-  	echo "Downloading btop..."
+  if [ ! -f "$tools_dir/btop" ]; then
+    echo "Downloading btop..."
     
-		wget -O btop.tbz "$btop_url" || curl -L "$btop_url" -o btop.tbz
+    wget -O btop.tbz "$btop_url" || curl -L "$btop_url" -o btop.tbz
     tar -xjf btop.tbz
     rm btop.tbz
 
-		mv "./btop/bin/btop" "$tools_dir/btop"
-		rm -rf "btop"
+    mv "./btop/bin/btop" "$tools_dir/btop"
+    rm -rf "btop"
 
-		echo "done setting up btop"
-	fi
+    echo "done setting up btop"
+  fi
  }
 
 get_tools
+export PATH="$HOME/tools:$PATH"
+
 update_dotfiles
+
 clear
 fastfetch
-
-export PATH="$HOME/tools:$PATH"
