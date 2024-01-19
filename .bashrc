@@ -28,10 +28,12 @@ update_dotfiles() {
     fi
   fi
 
-  if [ ! -d ~/.vim ]; then
+  if [ ! -d $HOME/.vim ]; then
     echo "vim plugin folder not located | Installing now..."
 
-    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    mkdir "$HOME/.vim"
+    mkdir "$HOME/.vim/autoload"
+    wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim "$HOME/.vim/autoload/plug.vim"
   fi
 
   if [ -f "$HOME_BASHRC" ] && [ ! -L "$HOME_BASHRC" ]; then
