@@ -44,7 +44,7 @@ get_tools() {
 		echo "Downloading fastfetch..."
 	
 		wget -O fastfetch.zip "$fastfetch_url" || curl -L "$fastfetch_url" -o fastfetch.zip
-    unzip fastfetch.zip
+    unzip fastfetch.zip "fastfetch"
     rm fastfetch.zip
 
 		mv "./fastfetch/usr/bin/fastfetch" "$tools_dir/fastfetch"
