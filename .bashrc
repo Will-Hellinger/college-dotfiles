@@ -131,6 +131,17 @@ getinfo() {
   ps -u "$username" -o pid=,cmd= | awk '{printf "  %-8s %s\n", $1, $0}' | cut -d' ' -f1,3-
 }
 
+server_info(){
+  echo -e "Welcome to RIT Servers!"
+  echo -e "There are $online_user_count users\e[32m online\e[0m!"
+}
+
+clean_clear() {
+  clear
+  fastfetch
+  server_info
+}
+
 user_count=$(wc -l /etc/passwd | cut -d' ' -f1)
 online_user_count=$(who | cut -d' ' -f1 | sort | uniq | wc -l)
 
@@ -138,6 +149,4 @@ get_tools
 update_dotfiles
 clear
 fastfetch
-
-echo -e "Welcome to RIT Servers!"
-echo -e "There are $online_user_count users\e[32m online\e[0m!"
+server_info
