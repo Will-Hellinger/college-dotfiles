@@ -48,7 +48,7 @@ get_tools() {
     rm fastfetch.zip
 
     mv "./fastfetch-2.6.0-Linux/usr/bin/fastfetch" "$tools_dir/fastfetch"
-    rm -rf "fastfetch"
+    rm -rf "fastfetch-2.6.0-Linux"
 
     echo "Done setting up fastfetch"
   fi
