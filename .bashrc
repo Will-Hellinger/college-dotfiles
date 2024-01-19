@@ -8,12 +8,16 @@ update_dotfiles() {
   local HOME_VIMRC="$HOME/.vimrc"
 
   local DOTFILES_BASHRC="$repo_dir/.bashrc"
- 	local HOME_BASHRC="$HOME/.bashrc"
+  local HOME_BASHRC="$HOME/.bashrc"
 
   if [ ! -d "$repo_dir" ]; then
     git clone "$repo_url" "$repo_dir"
   else
     (cd "$repo_dir" && git pull origin main)
+  fi
+
+  if [ -f "$HOME_VIMRC" ] && [ ! -L "$HOME_VIMRC" ]; then
+    mv "$HOME_VIMRC" "$HOME_VIMRC.bak"
   fi
 
   if [ ! -L "$HOME_VIMRC" ]; then
@@ -22,6 +26,10 @@ update_dotfiles() {
     else
       echo "dotfiles .vimrc not found. Symlink not created."
     fi
+  fi
+
+  if [ -f "$HOME_BASHRC" ] && [ ! -L "$HOME_BASHRC" ]; then
+    mv "$HOME_BASHRC" "${HOME_BASHRC}.bak"
   fi
 
   if [ ! -L "$HOME_BASHRC" ]; then
