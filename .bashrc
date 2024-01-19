@@ -110,6 +110,22 @@ userlist() {
   esac
 }
 
+getinfo() {
+  if [ -z "$1" ]; then
+    echo "Usage: getinfo username"
+    return 1
+  fi
+
+  local username="$1"
+
+  echo "Information for user: $username"
+  
+  echo "Uptime: $(last -F -n 1 "$username" | head -n 1 | awk '{print $6, $7, $8, $9, $10}')"
+
+  echo "Processes running:"
+  ps -u "$username" -o pid,cmd
+}
+
 user_count=$(wc -l /etc/passwd | cut -d' ' -f1)
 online_user_count=$(who | cut -d' ' -f1 | sort | uniq | wc -l)
 
