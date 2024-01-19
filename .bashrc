@@ -1,7 +1,7 @@
 source /usr/local/lib/config/Bash_Profile
 
 update_dotfiles() {
-  local repo_dir="$HOME/dotfiles"
+  local repo_dir="$HOME/.dotfiles"
   local repo_url="https://github.com/Will-Hellinger/college-dotfiles.git"
 
   local DOTFILES_VIMRC="$repo_dir/.vimrc"
@@ -36,7 +36,7 @@ update_dotfiles() {
 get_tools() {
   local fastfetch_url="https://github.com/fastfetch-cli/fastfetch/releases/download/2.6.0/fastfetch-2.6.0-Linux.zip"
   local btop_url="https://github.com/aristocratos/btop/releases/download/v1.3.0/btop-x86_64-linux-musl.tbz"
-  local tools_dir="$HOME/tools"
+  local tools_dir="$HOME/.tools"
 
   mkdir -p "$tools_dir"
 
