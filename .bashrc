@@ -30,7 +30,7 @@ update_dotfiles() {
     else
       echo "dotfiles .bashrc not found. Symlink not created."
     fi
-	fi
+  fi
 }
 
 get_tools() {
