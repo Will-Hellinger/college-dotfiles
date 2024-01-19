@@ -17,7 +17,7 @@ filetype plugin on
 set encoding=utf-8
 
 let NERDTreeWinPos = "left"
-autocmd VimEnter * NERDTREE | wincmd p
+autocmd VimEnter * NERDTree | wincmd p
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
