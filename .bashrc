@@ -74,3 +74,4 @@ update_dotfiles
 
 clear
 fastfetch
+echo "Welcome to RIT Servers!"
