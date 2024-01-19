@@ -77,6 +77,39 @@ get_tools() {
   export PATH="$tools_dir:$PATH"
  }
 
+userlist() {
+  local option=${1:-all}
+  local online_users=$(who | cut -d' ' -f1 | sort | uniq)
+  local all_users=$(awk -F':' '{print $1}' /etc/passwd)
+
+  case "$option" in
+    online)
+      echo -e "Online Users:"
+      for user in $online_users; do
+        echo -e "\e[32m$user\e[0m"
+      done
+      ;;
+    offline)
+      echo -e "Offline Users:"
+        for user in $all_users; do
+          if ! [[ $online_users =~ $user ]]; then
+            echo -e "\e[31m$user\e[0m"
+          fi
+        done
+        ;;
+    *)
+      echo -e "All Users:"
+      for user in $all_users; do
+        if [[ $online_users =~ $user ]]; then
+          echo -e "$user \e[32m(online)\e[0m"
+        else
+          echo -e "$user \e[31m(offline)\e[0m"
+        fi
+      done
+      ;;
+  esac
+}
+
 user_count=$(wc -l /etc/passwd | cut -d' ' -f1)
 online_user_count=$(who | cut -d' ' -f1 | sort | uniq | wc -l)
 
