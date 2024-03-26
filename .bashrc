@@ -174,14 +174,14 @@ backup() {
 }
 
 server_info() {
-  local online_users=$(who | cut -d' ' -f1 | sort | uniq)
+  local online_users=$(who | cut -d' ' -f1 | sort | uniq) + 1
   local online_user_count=$(echo "$online_users" | wc -l)
   local current_user=$(whoami)
 
   echo -e "Welcome to RIT Servers!"
   echo -e "Current time is: $(date)"
 
-  if [ "$online_user_count" -eq 1 ] && [[ $online_users == *"$current_user"* ]]; then
+  if [ "$online_user_count" -eq 1 ]; then
     echo -e "There is 1 user\e[32m online\e[0m - You!"
   else
     echo -e "There are $online_user_count user(s)\e[32m online\e[0m!"
