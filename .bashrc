@@ -181,12 +181,10 @@ server_info() {
   echo -e "Welcome to RIT Servers!"
   echo -e "Current time is: $(date)"
 
-  if [ "$online_user_count" -eq 0 ]; then
+  if [ "$online_user_count" -eq 1 ] && [[ $online_users == *"$current_user"* ]]; then
     echo -e "There is 1 user\e[32m online\e[0m - You!"
-  else if [ "$online_user_count" -eq 1 ]; then
-    echo -e "There is $online_user_count user\e[32m online\e[0m!"
   else
-    echo -e "There are $online_user_count users\e[32m online\e[0m!"
+    echo -e "There are $online_user_count user(s)\e[32m online\e[0m!"
   fi
 }
 
